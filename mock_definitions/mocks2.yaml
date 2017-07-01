@@ -1,0 +1,73 @@
+mocks:
+  - mock:
+      name: xmlmock2
+      request:
+        method: GET
+        url: /xml2
+      response:
+        status: 200
+        body: '<?xml version="1.0" encoding="UTF-8" ?>
+                <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:exam="http://www.example.org">
+                  <soapenv:Header/>
+                  <soapenv:Body>
+                    <exam:output>
+                      <exam:result>Success!</exam:result>
+                    </exam:output>
+                 </soapenv:Body>
+               </soapenv:Envelope>'
+        headers:
+          Content-type: application/xml
+  - mock:
+      name: testmock3
+      request:
+        method: POST
+        url: /test
+        body: '<?xml version="1.0" encoding="UTF-8" ?>
+                <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:exam="http://www.example.org">
+                  <soapenv:Header/>
+                  <soapenv:Body>
+                    <exam:input>
+                      <exam:request>test</exam:request>
+                    </exam:input>
+                 </soapenv:Body>
+               </soapenv:Envelope>'
+      response:
+        status: 200
+        body: '<?xml version="1.0" encoding="UTF-8" ?>
+                <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:exam="http://www.example.org">
+                  <soapenv:Header/>
+                  <soapenv:Body>
+                    <exam:output>
+                      <exam:result>Success1!</exam:result>
+                    </exam:output>
+                 </soapenv:Body>
+               </soapenv:Envelope>'
+        headers:
+          Content-type: application/xml
+  - mock:
+      name: testmock4
+      request:
+        method: POST
+        url: /test2
+        body: '<?xml version="1.0" encoding="UTF-8" ?>
+                <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:exam="http://www.example.org">
+                  <soapenv:Header/>
+                  <soapenv:Body>
+                    <exam:input>
+                      <exam:request>test2</exam:request>
+                    </exam:input>
+                 </soapenv:Body>
+               </soapenv:Envelope>'
+      response:
+        status: 200
+        body: '<?xml version="1.0" encoding="UTF-8" ?>
+                <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:exam="http://www.example.org">
+                  <soapenv:Header/>
+                  <soapenv:Body>
+                    <exam:output>
+                      <exam:result>Success2!</exam:result>
+                    </exam:output>
+                 </soapenv:Body>
+               </soapenv:Envelope>'
+        headers:
+          Content-type: application/xml
