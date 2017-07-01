@@ -29,7 +29,6 @@ class MockHandler(RequestHandler):
                     #return mock response
                     self.write(mock['mock']['response']['body'])
 
-                #TODO: Assertions for GET requests
         
 
     def post(self):
