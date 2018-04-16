@@ -42,7 +42,6 @@ class MockHandler(RequestHandler):
 
                     
 
-                #TODO: Assertions for GET requests
         
 
     def post(self):

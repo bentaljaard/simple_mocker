@@ -11,15 +11,9 @@ import tornado.web
 from mock_handler import MockHandler
 
 
-def setUp(self):
-    super(BaseClass,self).setUp()
-    with open(filename) as data_file:
-        self.test_data = yaml.load(data_file)
-    print(filename)
-   
 
 def get_app(mocks):
-    #Create a generic route handler
+    #Create a generic route handler, passing in mocks as argument
     application = tornado.web.Application([
     (r"/.*", MockHandler, {"mocks":mocks}), ])
     application.listen(port)
@@ -27,6 +21,7 @@ def get_app(mocks):
     return application
 
 def get_yaml_files(path):
+    # get list of yaml files in folder
     files = os.listdir(os.path.abspath(path))
     return filter(lambda file: re.match(".*\.yaml$", file), files)
 
@@ -38,6 +33,7 @@ def load_mocks(folder):
         with open(folder + "/" + file) as data_file:
             mock_file = yaml.load(data_file)
         print("Loaded " + file)
+        # append to current list of mocks
         mocks["mocks"] = mocks["mocks"] + mock_file["mocks"]
     return mocks
 
@@ -57,7 +53,10 @@ if __name__ == '__main__':
     folder = args.folder
 
     mocks = load_mocks(folder)
+    # setup tornado application
     get_app(mocks)
+    
+    # start tornado server
     tornado.ioloop.IOLoop.current().start()
 
 
