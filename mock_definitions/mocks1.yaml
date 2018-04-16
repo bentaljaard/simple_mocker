@@ -5,22 +5,29 @@ mocks:
         method: GET
         url: /xml
       response:
+        code: |
+               import uuid
+
+               values={"value":str(uuid.uuid4())}
+              
         status: 200
         body: '<?xml version="1.0" encoding="UTF-8" ?>
                 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:exam="http://www.example.org">
                   <soapenv:Header/>
                   <soapenv:Body>
                     <exam:output>
-                      <exam:result>Success!</exam:result>
+                      <exam:result>{{value}}</exam:result>
                     </exam:output>
                  </soapenv:Body>
                </soapenv:Envelope>'
+        render: true
+        renderdict: values
         headers:
           Content-type: application/xml
   - mock:
       name: testmock
       request:
-        method: POST
+        method: GET
         url: /test
         body: '<?xml version="1.0" encoding="UTF-8" ?>
                 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:exam="http://www.example.org">
