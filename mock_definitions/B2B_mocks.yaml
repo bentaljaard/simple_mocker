@@ -1,0 +1,29 @@
+mocks:
+  - mock:
+      name: b2bopcreateMock
+      request:
+        method: GET
+        url: /opcreate
+      response:
+        code: |
+               import uuid
+
+               values={"value":str(uuid.uuid4())}
+              
+        status: 200
+        body: '<?xml version="1.0" encoding="UTF-8" ?>
+                <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+                  <soapenv:Header/>
+                  <soapenv:Body>
+                    <ns0:OpCreate xmlns:ns0="urn:B2B_NL_PEET">
+                        <ns0:IF_Request_ID>000000000967370</ns0:IF_Request_ID>
+                        <ns0:B2B_ticket_id>{{value}}</ns0:B2B_ticket_id>
+                        <ns0:errormessage/>
+                    </ns0:OpCreate>
+                 </soapenv:Body>
+               </soapenv:Envelope>'
+        render: true
+        renderdict: values
+        headers:
+          Content-type: application/xml
+ 
